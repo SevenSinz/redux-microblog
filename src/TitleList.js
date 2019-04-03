@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import BlogCard from "./BlogCard";
 
 class TitleList extends Component {
-    static defaultProps = { titleList: [] };
+    static defaultProps = { titleList: [{ id: "1", title: "Test1", description: "Test1", body: "So much testing." }] };
 
-    render() {
+  render() {
     return this.props.titleList.length ? (
         <div className="TitleList">
           {this.props.titleList.map((cardData) => (
@@ -18,7 +18,7 @@ class TitleList extends Component {
         </div>
       ) : (
         <p className="lead">Sorry, no post exist yet!</p>
-      );
+    );
   }
 }
 
