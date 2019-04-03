@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blogPosts: [],
+      blogPosts: [{ id: "1", title: "Test1", description: "Test1", body: "So much testing." }],
     }
   }
 
@@ -28,7 +28,8 @@ class App extends Component {
                 {...props} {...this.props} />} />
             <Route exact path="/:id"
               render={(props) => <BlogPost
-                {...props} {...this.props} />} />
+                {...props} {...this.props}
+                blogPosts={this.state.blogPosts} />} />
             <Redirect to="/" />
           </Switch>
         </div>
