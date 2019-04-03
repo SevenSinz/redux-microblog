@@ -29,12 +29,15 @@ class BlogPost extends Component {
 
     showEdit(){
         return (
-            <PostFormEditAdd blogPost={ this.state.blogPost } />
+            <PostFormEditAdd history={ this.props.history }
+                            blogPost={ this.state.blogPost } 
+                            handleSave={ this.props.handleSave } />
         )
     }
 
     handleDelete(){
         this.props.handleDelete(this.state.blogPost.id);
+        this.props.history.push('/');
     }
 
     showBlogPost(){

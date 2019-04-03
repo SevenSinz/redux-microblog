@@ -22,14 +22,14 @@ class PostFormEditAdd extends Component {
 
     handleSubmit(evt) {
         evt.preventDefault();
-        // check if edit or add
-        // if add, give it uuid
-        // if edit, continue
-        this.props.handleSave(this.state.blogPost)
+        console.log("FormPostEditAdd blogPost?", this.state);
+        this.props.handleSave(this.state);
+        this.props.history.push('/');
     }
 
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value })
+
     }
     
     // handleChange(evt) {
@@ -46,14 +46,13 @@ class PostFormEditAdd extends Component {
 
     render() {
 
-        console.log("FormPostEditAdd blogPost?", this.state.blogPost);
         console.log("FormPostEditAdd props = ", this.props);
         console.log("FormPostEditAdd state = ", this.state);
 
 
         return (
             <div>
-                <form >
+                <form onSubmit={this.handleSubmit}>
                     <section>
                         <Card>
                             <CardBody>
@@ -86,7 +85,7 @@ class PostFormEditAdd extends Component {
                                         onChange={this.handleChange} />
                                 </div>
 
-                                <button onSubmit={this.handleSubmit}> Save </button>
+                                <button > Save </button>
                                 <Link to="/">
                                     <button type="button"> Cancel </button>
                                 </Link>

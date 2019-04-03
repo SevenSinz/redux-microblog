@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blogPosts: [{ id: "1", title: "Test1", description: "Test1", body: "So much testing." }],
+      blogPosts: [],
     }
     this.delete = this.delete.bind(this);
     this.save = this.save.bind(this);
@@ -21,8 +21,11 @@ class App extends Component {
   }
 
   save(blogPost){
+    console.log("inside save in App, blogPost = ", blogPost)
     let blogPosts = this.state.blogPosts.filter(post => post.id !== blogPost.id) 
+    console.log("blogPosts = ", blogPosts)
     this.setState({ blogPosts: [...blogPosts, blogPost] })
+    console.log("state adter update = ", [...blogPosts, blogPost] )
   }
 
   render() {
@@ -31,18 +34,29 @@ class App extends Component {
         <div className="App">
           <header><Navbar {...this.props} /></header>
           <Switch>
-            <Route exact path="/"
-              render={(props) => <BlogHome
-                {...props} {...this.props} />} />
-            <Route exact path="/new"
-              render={(props) => <PostFormEditAdd
-                {...props} {...this.props} />} />
-            <Route exact path="/:id"
-              render={(props) => <BlogPost
-                {...props} {...this.props}
-                blogPosts={this.state.blogPosts}
-                handleDelete={ this.delete } />} />
+            
+            <Route  exact path="/"
+                    render={(props) => <BlogHome
+                    {...props} 
+                    {...this.props}
+                    titleList= {this.state.blogPosts} />} />
+            
+            <Route  exact path="/new"
+                    render={(props) => <PostFormEditAdd
+                    {...props}  
+                    {...this.props}
+                    handleSave={ this.save } />} />
+            
+            <Route  exact path="/:id"
+                    render={(props) => <BlogPost
+                    {...props} 
+                    {...this.props}
+                    blogPosts={this.state.blogPosts}
+                    handleDelete={ this.delete }
+                    handleSave={ this.save }  />} />
+            
             <Redirect to="/" />
+          
           </Switch>
         </div>
       </BrowserRouter>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import BlogCard from "./BlogCard";
 
 class TitleList extends Component {
-    static defaultProps = { titleList: [{ id: "1", title: "Test1", description: "Test1", body: "So much testing." }] };
+    static defaultProps = { titleList: [] };
 
   render() {
     return this.props.titleList.length ? (
