@@ -12,6 +12,17 @@ class App extends Component {
     this.state = {
       blogPosts: [{ id: "1", title: "Test1", description: "Test1", body: "So much testing." }],
     }
+    this.delete = this.delete.bind(this);
+    this.save = this.save.bind(this);
+  }
+
+  delete(id){
+    this.setState( { blogPosts: this.state.blogPosts.filter(post => post.id !== id) } )
+  }
+
+  save(blogPost){
+    let blogPosts = this.state.blogPosts.filter(post => post.id !== blogPost.id) 
+    this.setState({ blogPosts: [...blogPosts, blogPost] })
   }
 
   render() {
@@ -29,7 +40,8 @@ class App extends Component {
             <Route exact path="/:id"
               render={(props) => <BlogPost
                 {...props} {...this.props}
-                blogPosts={this.state.blogPosts} />} />
+                blogPosts={this.state.blogPosts}
+                handleDelete={ this.delete } />} />
             <Redirect to="/" />
           </Switch>
         </div>
