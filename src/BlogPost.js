@@ -38,8 +38,7 @@ class BlogPost extends Component {
             <CommentAddForm blogPost={this.props.blogPost}
                 handleSavePost={this.props.handleSavePost} />
             </div>
-
-        )
+        );
     }
 
 
@@ -58,8 +57,7 @@ class BlogPost extends Component {
             <CommentAddForm blogPost={this.props.blogPost}
                 handleSavePost={this.props.handleSavePost} />
         </div>
-            
-        )
+        );
     }
 
     // componentDidMount(){
