@@ -18,7 +18,13 @@ class TitleList extends Component {
         </div>
       ) : (
         <div>
-          <p className="lead text-danger bg-light rounded w-50 mx-auto">Sorry, no posts exist yet!</p>
+          <p className="lead
+                        text-danger
+                        bg-light
+                        borderborder-danger
+                        rounded
+                        w-50
+                        mx-auto">Sorry, no posts exist yet!</p>
         </div>
     );
   }

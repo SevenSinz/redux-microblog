@@ -7,7 +7,9 @@ class Navbar extends Component {
                            container
                            bg-info
                            text-white
-                           rounded">
+                           rounded
+                           mb-2
+                           mt-2">
         <h1>  Microblog  </h1>
         <h4> Get in the Rithm of blogging </h4>
         <Link to="/" className="white-link">Blog</Link>
