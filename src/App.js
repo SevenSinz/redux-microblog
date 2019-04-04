@@ -24,9 +24,9 @@ class App extends Component {
   savePost(blogPost) {
     // console.log("inside savePost in App, blogPost = ", blogPost)
     let blogPosts = this.state.blogPosts.filter(post => post.id !== blogPost.id)
-    console.log("blogPosts = ", blogPosts)
+    // console.log("blogPosts = ", blogPosts)
     this.setState({ blogPosts: [...blogPosts, blogPost] })
-    console.log("state after update = ", [...blogPosts, blogPost])
+    // console.log("state after update = ", [...blogPosts, blogPost])
   }
 
   getBlogPost(rtprops) {
