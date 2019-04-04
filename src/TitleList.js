@@ -17,7 +17,9 @@ class TitleList extends Component {
           ))}
         </div>
       ) : (
-        <p className="lead">Sorry, no post exist yet!</p>
+        <div>
+          <p className="lead text-danger bg-light rounded w-50 mx-auto">Sorry, no posts exist yet!</p>
+        </div>
     );
   }
 }
