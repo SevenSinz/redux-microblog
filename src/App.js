@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Redirect, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Redirect, Route } from "react-router-dom";
 
 import BlogHome from './BlogHome';
 import PostFormEditAdd from './PostFormEditAdd';
@@ -35,35 +35,33 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <header><Navbar {...this.props} /></header>
-          <Switch>
+      <div className="App container">
+        <header><Navbar {...this.props} /></header>
+        <Switch>
 
-            <Route exact path="/"
-              render={(props) => <BlogHome
-                {...props}
-                {...this.props}
-                titleList={this.state.blogPosts} />} />
+          <Route exact path="/"
+            render={(props) => <BlogHome
+              {...props}
+              {...this.props}
+              titleList={this.state.blogPosts} />} />
 
-            <Route exact path="/new"
-              render={(props) => <PostFormEditAdd
-                {...props}
-                {...this.props}
-                handleSavePost={this.savePost} />} />
+          <Route exact path="/new"
+            render={(props) => <PostFormEditAdd
+              {...props}
+              {...this.props}
+              handleSavePost={this.savePost} />} />
 
-            <Route exact path="/:id"
-              render={(rtprops) => <BlogPost
-                {...rtprops}
-                blogPost={this.getBlogPost(rtprops)}
-                handleDeletePost={this.deletePost}
-                handleSavePost={this.savePost} />} />
+          <Route exact path="/:id"
+            render={(rtprops) => <BlogPost
+              {...rtprops}
+              blogPost={this.getBlogPost(rtprops)}
+              handleDeletePost={this.deletePost}
+              handleSavePost={this.savePost} />} />
 
-            <Redirect to="/" />
+          <Redirect to="/" />
 
-          </Switch>
-        </div>
-      </BrowserRouter>
+        </Switch>
+      </div>
     );
   }
 }
