@@ -30,39 +30,44 @@ class BlogPost extends Component {
         this.props.history.push('/');
     }
 
-    showEdit() {
-        console.log("blogPost inside BLogpost showEdit = ", this.props.blogPost)
+    showEdit(blogPost) {
+        console.log("blogPost inside BLogpost showEdit = ", blogPost)
         return (<div>
             <PostFormEditAdd history={this.props.history}
-                blogPost={this.props.blogPost}
+                blogPost={blogPost}
                 handleSavePost={this.props.handleSavePost} />
             </div>
         );
     }
 
-    showBlogPost() {
-        console.log("blogPost inside BLogpost showblogpost = ", this.props.blogPost)
+    showBlogPost(blogPost) {
+        console.log("blogPost inside BLogpost showblogpost = ",  blogPost)
         return (<div>
             <button onClick={this.toggleIsEditing}> Edit </button>
             <button onClick={this.handleDeletePost}> Delete </button>
             <div>
-                <h2> {this.props.blogPost.title} </h2>
-                <p> {this.props.blogPost.description} </p>
-                <p> {this.props.blogPost.body} </p>
+                <h2> { blogPost.title } </h2>
+                <p> { blogPost.description } </p>
+                <p> { blogPost.body } </p>
             </div>
-            <CommentList blogPost={this.props.blogPost}
+            <CommentList blogPost={ blogPost }
                 handleSavePost={this.props.handleSavePost} />
-            <CommentAddForm blogPost={this.props.blogPost}
+            <CommentAddForm blogPost={ blogPost }
                 handleSavePost={this.props.handleSavePost} />
         </div>
         );
     }
 
     render() {
-        // console.log("blogPost in BlogPost?", this.props.blogPost);
+        
         console.log("BlogPost render", this.props);
+        let id = this.props.match.params.id;
+        console.log("BlogPost inside render", this.props.blogPosts[id]);
+
+        let blogPost = this.props.blogPosts[id]
+        // console.log("blogPost in BlogPost?", this.blogPost);
         return (
-            this.state.isEditing ? this.showEdit() : this.showBlogPost()
+            this.state.isEditing ? this.showEdit(blogPost) : this.showBlogPost(blogPost)
         );
     }
 }
@@ -72,7 +77,7 @@ function mapStateToProps(state){
     console.log("BlogPost inside mapStateToProps state = ", state)
 
     return { 
-        
+        blogPosts : state.blogPosts
     }
 }
 // function mapDispatchToProps(dispatch, props){
