@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import TitleList from './TitleList';
 
-
 class BlogHome extends Component {
     render() {
         return (

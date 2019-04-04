@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import PostFormEditAdd from './PostFormEditAdd';
 
+import PostFormEditAdd from './PostFormEditAdd';
 import CommentAddForm from './CommentAddForm';
 import CommentList from './CommentList';
-
-// Edit button and Delete button
 
 class BlogPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isEditing: false,
-
         }
         this.toggleIsEditing = this.toggleIsEditing.bind(this);
         this.handleDeletePost = this.handleDeletePost.bind(this);
     }
-
 
     /** When clicked switches state isEditing between true and false.
      * This will render either the blog post or the blog edit form. */

@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardTitle } from 'reactstrap';
 import { Link } from "react-router-dom";
-
 import uuid from 'uuid/v4';
-
 
 class PostFormEditAdd extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-                id: uuid(),
-                title: "",
-                description: "",
-                body: "",
-                comments: []
+            id: uuid(),
+            title: "",
+            description: "",
+            body: "",
+            comments: []
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -29,7 +26,7 @@ class PostFormEditAdd extends Component {
     }
 
     handleChange(evt) {
-        this.setState({ [evt.target.name]: evt.target.value })
+        this.setState({ [evt.target.name]: evt.target.value });
     }
     
     // handleChange(evt) {
@@ -40,7 +37,7 @@ class PostFormEditAdd extends Component {
 
     componentDidMount() {
         if (this.props.blogPost) {
-            this.setState( this.props.blogPost )
+            this.setState( this.props.blogPost );
         }
     }
 
@@ -57,7 +54,6 @@ class PostFormEditAdd extends Component {
                         <Card>
                             <CardBody>
                                 <CardTitle className="font-weight-bold text-center">
-
                                 </CardTitle>
 
                                 <div>
@@ -89,11 +85,9 @@ class PostFormEditAdd extends Component {
                                 <Link to="/">
                                     <button type="button"> Cancel </button>
                                 </Link>
-
                             </CardBody>
                         </Card>
                     </section>
-
                 </form>
             </div>
         );
