@@ -13,7 +13,8 @@ class PostFormEditAdd extends Component {
                 id: uuid(),
                 title: "",
                 description: "",
-                body: ""
+                body: "",
+                comments: []
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -23,13 +24,12 @@ class PostFormEditAdd extends Component {
     handleSubmit(evt) {
         evt.preventDefault();
         console.log("FormPostEditAdd blogPost?", this.state);
-        this.props.handleSave(this.state);
+        this.props.handleSavePost(this.state);
         this.props.history.push('/');
     }
 
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value })
-
     }
     
     // handleChange(evt) {

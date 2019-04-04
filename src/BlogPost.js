@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PostFormEditAdd from './PostFormEditAdd';
 
+import CommentAddForm from './CommentAddForm';
+import CommentList from './CommentList';
+
 // Edit button and Delete button
 
 class BlogPost extends Component {
@@ -8,16 +11,12 @@ class BlogPost extends Component {
         super(props);
         this.state = {
             isEditing: false,
-            blogPost: this.findBlog()[0]
+
         }
         this.toggleIsEditing = this.toggleIsEditing.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
+        this.handleDeletePost = this.handleDeletePost.bind(this);
     }
-    
-    findBlog() {
-        const blogId = this.props.match.params.id;
-        return this.props.blogPosts.filter(post => post.id === blogId); 
-    }
+
 
     /** When clicked switches state isEditing between true and false.
      * This will render either the blog post or the blog edit form. */
@@ -27,40 +26,59 @@ class BlogPost extends Component {
         );
     }
 
-    showEdit(){
-        return (
-            <PostFormEditAdd history={ this.props.history }
-                            blogPost={ this.state.blogPost } 
-                            handleSave={ this.props.handleSave } />
-        )
-    }
-
-    handleDelete(){
-        this.props.handleDelete(this.state.blogPost.id);
+    handleDeletePost() {
+        this.props.handleDeletePost(this.props.match.params.id);
         this.props.history.push('/');
     }
 
-    showBlogPost(){
-        return(
-            <div>
-                <button onClick={this.toggleIsEditing}> Edit </button>
-                <button onClick={this.handleDelete}> Delete </button>
-                <div>
-                    <h2> {this.state.blogPost.title} </h2>
-                    <p> {this.state.blogPost.description} </p>
-                    <p> {this.state.blogPost.body} </p>
-                </div>
+    showEdit() {
+        console.log("blogPost inside BLogpost showEdit = ", this.props.blogPost)
+        return (<div>
+            <PostFormEditAdd history={this.props.history}
+                blogPost={this.props.blogPost}
+                handleSavePost={this.props.handleSavePost} />
+            <CommentList blogPost={this.props.blogPost}
+                handleSavePost={this.props.handleSavePost} />
+            <CommentAddForm blogPost={this.props.blogPost}
+                handleSavePost={this.props.handleSavePost} />
             </div>
+
         )
     }
 
 
+    showBlogPost() {
+        console.log("blogPost inside BLogpost showblogpost = ", this.props.blogPost)
+        return (<div>
+            <button onClick={this.toggleIsEditing}> Edit </button>
+            <button onClick={this.handleDeletePost}> Delete </button>
+            <div>
+                <h2> {this.props.blogPost.title} </h2>
+                <p> {this.props.blogPost.description} </p>
+                <p> {this.props.blogPost.body} </p>
+            </div>
+            <CommentList blogPost={this.props.blogPost}
+                handleSavePost={this.props.handleSavePost} />
+            <CommentAddForm blogPost={this.props.blogPost}
+                handleSavePost={this.props.handleSavePost} />
+        </div>
+            
+        )
+    }
+
+    // componentDidMount(){
+    //     this.findBlog();
+    // }
 
     render() {
-        const blogPost = this.findBlog()[0]
+        // const blogId = this.props.match.params.id;
+        // let blogPost = this.props.blogPosts.filter(post => post.id === blogId)[0];
+        console.log("blogPost in BlogPost?", this.props.blogPost);
 
-        console.log("blogPost in BlogPost?", blogPost);
-        console.log("BlogPost props?", this.props);
+        // let showBlogPost = 
+
+        // let showEdit =  
+
         console.log("BlogPost state?", this.state);
         return (
             this.state.isEditing ? this.showEdit() : this.showBlogPost()

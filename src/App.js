@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Redirect, Route, BrowserRouter } from "react-router-dom";
+
 import BlogHome from './BlogHome';
 import PostFormEditAdd from './PostFormEditAdd';
 import BlogPost from './BlogPost';
@@ -11,21 +12,26 @@ class App extends Component {
     super(props);
     this.state = {
       blogPosts: [],
+
     }
-    this.delete = this.delete.bind(this);
-    this.save = this.save.bind(this);
+    this.deletePost= this.deletePost.bind(this);
+    this.savePost = this.savePost.bind(this);
   }
 
-  delete(id){
+  deletePost(id){
     this.setState( { blogPosts: this.state.blogPosts.filter(post => post.id !== id) } )
   }
 
-  save(blogPost){
-    console.log("inside save in App, blogPost = ", blogPost)
+  savePost(blogPost){
+    // console.log("inside savePost in App, blogPost = ", blogPost)
     let blogPosts = this.state.blogPosts.filter(post => post.id !== blogPost.id) 
     console.log("blogPosts = ", blogPosts)
     this.setState({ blogPosts: [...blogPosts, blogPost] })
-    console.log("state adter update = ", [...blogPosts, blogPost] )
+    console.log("state after update = ", [...blogPosts, blogPost] )
+  }
+
+  getBlogPost(rtprops){
+    return this.state.blogPosts.filter(post => post.id === rtprops.match.params.id)[0]
   }
 
   render() {
@@ -45,15 +51,14 @@ class App extends Component {
                     render={(props) => <PostFormEditAdd
                     {...props}  
                     {...this.props}
-                    handleSave={ this.save } />} />
+                    handleSavePost={ this.savePost } />} />
             
             <Route  exact path="/:id"
-                    render={(props) => <BlogPost
-                    {...props} 
-                    {...this.props}
-                    blogPosts={this.state.blogPosts}
-                    handleDelete={ this.delete }
-                    handleSave={ this.save }  />} />
+                    render={(rtprops) => <BlogPost
+                    {...rtprops}
+                    blogPost={this.getBlogPost(rtprops)}
+                    handleDeletePost={ this.deletePost }
+                    handleSavePost={ this.savePost }  />} />
             
             <Redirect to="/" />
           
