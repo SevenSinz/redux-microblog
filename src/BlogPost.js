@@ -22,6 +22,7 @@ class BlogPost extends Component {
         );
     }
 
+    /** Calls a function in App to remove this post from state. */
     handleDeletePost() {
         this.props.handleDeletePost(this.props.match.params.id);
         this.props.history.push('/');
