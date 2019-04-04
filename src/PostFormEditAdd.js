@@ -28,12 +28,6 @@ class PostFormEditAdd extends Component {
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value });
     }
-    
-    // handleChange(evt) {
-    //     this.setState({
-    //         blogPost: {...this.state.blogPost, [evt.target.name]: evt.target.value}
-    //     })
-    // }
 
     componentDidMount() {
         if (this.props.blogPost) {
