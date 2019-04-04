@@ -18,37 +18,26 @@ class App extends Component {
   }
 
   deletePost(id) {
-    // this.setState({ blogPosts: this.state.blogPosts.filter(post => post.id !== id) })
     let newBlogPosts = {...this.state.blogPosts} 
     delete newBlogPosts[id];
     this.setState( { blogPosts: newBlogPosts })
     console.log("inside deletePost in App, blogPosts = ", this.state.blogPosts)
-    
   }
 
   savePost(blogPost) {
     console.log("inside savePost in App, blogPost = ", blogPost.id)
-    let id = blogPost.id;
-    this.setState({ blogPosts: { ...this.state.blogPosts, [id]: blogPost }})
+    this.setState({ blogPosts: { ...this.state.blogPosts, [blogPost.id]: blogPost }})
     console.log("inside savePost in App, blogPosts = ", this.state)
-    // let blogPosts = this.state.blogPosts.filter(post => post.id !== blogPost.id)
-    // // console.log("blogPosts = ", blogPosts)
-    // this.setState({ blogPosts: [...blogPosts, blogPost] })
-    // // console.log("state after update = ", [...blogPosts, blogPost])
   }
 
   getBlogPost(rtProps) {
-    // return this.state.blogPosts.filter(post => post.id === rtProps.match.params.id)[0]
     console.log("inside getBlogPost in App, blogPost = ", this.state.blogPosts[rtProps.match.params.id])
 
     return this.state.blogPosts[rtProps.match.params.id]
   }
 
   getBlogPosts(){
-    // if (this.state.blogPosts) {
-    // console.log("Object.values(this.props.blogPosts) = ", Object.values(this.state.blogPosts))
-    return Object.values(this.state.blogPosts)
-
+    return Object.values(this.state.blogPosts);
   }
 
   render() {
