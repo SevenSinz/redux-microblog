@@ -11,26 +11,44 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blogPosts: []
+      blogPosts: {}
     }
     this.deletePost = this.deletePost.bind(this);
     this.savePost = this.savePost.bind(this);
   }
 
   deletePost(id) {
-    this.setState({ blogPosts: this.state.blogPosts.filter(post => post.id !== id) })
+    // this.setState({ blogPosts: this.state.blogPosts.filter(post => post.id !== id) })
+    let newBlogPosts = {...this.state.blogPosts} 
+    delete newBlogPosts[id];
+    this.setState( { blogPosts: newBlogPosts })
+    console.log("inside deletePost in App, blogPosts = ", this.state.blogPosts)
+    
   }
 
   savePost(blogPost) {
-    // console.log("inside savePost in App, blogPost = ", blogPost)
-    let blogPosts = this.state.blogPosts.filter(post => post.id !== blogPost.id)
-    // console.log("blogPosts = ", blogPosts)
-    this.setState({ blogPosts: [...blogPosts, blogPost] })
-    // console.log("state after update = ", [...blogPosts, blogPost])
+    console.log("inside savePost in App, blogPost = ", blogPost.id)
+    let id = blogPost.id;
+    this.setState({ blogPosts: { ...this.state.blogPosts, [id]: blogPost }})
+    console.log("inside savePost in App, blogPosts = ", this.state)
+    // let blogPosts = this.state.blogPosts.filter(post => post.id !== blogPost.id)
+    // // console.log("blogPosts = ", blogPosts)
+    // this.setState({ blogPosts: [...blogPosts, blogPost] })
+    // // console.log("state after update = ", [...blogPosts, blogPost])
   }
 
-  getBlogPost(rtprops) {
-    return this.state.blogPosts.filter(post => post.id === rtprops.match.params.id)[0]
+  getBlogPost(rtProps) {
+    // return this.state.blogPosts.filter(post => post.id === rtProps.match.params.id)[0]
+    console.log("inside getBlogPost in App, blogPost = ", this.state.blogPosts[rtProps.match.params.id])
+
+    return this.state.blogPosts[rtProps.match.params.id]
+  }
+
+  getBlogPosts(){
+    // if (this.state.blogPosts) {
+    // console.log("Object.values(this.props.blogPosts) = ", Object.values(this.state.blogPosts))
+    return Object.values(this.state.blogPosts)
+
   }
 
   render() {
@@ -40,10 +58,9 @@ class App extends Component {
         <Switch>
 
           <Route exact path="/"
-            render={(props) => <BlogHome
-              {...props}
-              {...this.props}
-              titleList={this.state.blogPosts} />} />
+            render={(rtProps) => <BlogHome
+              {...rtProps}
+              titleList={this.getBlogPosts()} />} />
 
           <Route exact path="/new"
             render={(props) => <PostFormEditAdd
@@ -52,9 +69,9 @@ class App extends Component {
               handleSavePost={this.savePost} />} />
 
           <Route exact path="/:id"
-            render={(rtprops) => <BlogPost
-              {...rtprops}
-              blogPost={this.getBlogPost(rtprops)}
+            render={(rtProps) => <BlogPost
+              {...rtProps}
+              blogPost={this.getBlogPost(rtProps)}
               handleDeletePost={this.deletePost}
               handleSavePost={this.savePost} />} />
 

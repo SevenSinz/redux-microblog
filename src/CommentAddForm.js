@@ -16,7 +16,6 @@ class CommentAddForm extends Component {
     }
 
     handleSubmit(evt) {
-        evt.preventDefault();
         //give comment a uuid
         let newComment = { ...this.state };
         newComment.id = uuid();
@@ -28,6 +27,10 @@ class CommentAddForm extends Component {
 
         // send copy of blogPost save
         this.props.handleSavePost(newBlogPost);
+        this.setState( { 
+                        id: "",
+                        text: "" 
+                        })
     }
 
     handleChange(evt) {

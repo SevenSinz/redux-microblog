@@ -34,10 +34,6 @@ class BlogPost extends Component {
             <PostFormEditAdd history={this.props.history}
                 blogPost={this.props.blogPost}
                 handleSavePost={this.props.handleSavePost} />
-            <CommentList blogPost={this.props.blogPost}
-                handleSavePost={this.props.handleSavePost} />
-            <CommentAddForm blogPost={this.props.blogPost}
-                handleSavePost={this.props.handleSavePost} />
             </div>
         );
     }
@@ -61,20 +57,9 @@ class BlogPost extends Component {
         );
     }
 
-    // componentDidMount(){
-    //     this.findBlog();
-    // }
-
     render() {
-        // const blogId = this.props.match.params.id;
-        // let blogPost = this.props.blogPosts.filter(post => post.id === blogId)[0];
-        console.log("blogPost in BlogPost?", this.props.blogPost);
-
-        // let showBlogPost = 
-
-        // let showEdit =  
-
-        console.log("BlogPost state?", this.state);
+        // console.log("blogPost in BlogPost?", this.props.blogPost);
+        // console.log("BlogPost state?", this.state);
         return (
             this.state.isEditing ? this.showEdit() : this.showBlogPost()
         );
