@@ -13,7 +13,6 @@ class CommentList extends Component {
     let newComments = this.props.blogPost.comments.filter(c => c.id !== id)
     let newBlogPost = { ...this.props.blogPost, comments: newComments };
     this.props.handleSavePost(newBlogPost);
-
   }
 
   render() {
@@ -27,6 +26,7 @@ class CommentList extends Component {
           <CommentCard
             text={cardData.text}
             id={cardData.id}
+            key={cardData.id}
             handleDeleteComment={this.deleteComment}
           />
         ))}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardTitle } from 'reactstrap';
-
 import uuid from 'uuid/v4';
 
 class CommentAddForm extends Component {
@@ -59,7 +58,6 @@ class CommentAddForm extends Component {
                             </CardBody>
                         </Card>
                     </section>
-
                 </form>
             </div>
         );
