@@ -35,15 +35,11 @@ class PostFormEditAdd extends Component {
 
     componentDidMount() {
         if (this.props.blogPost) {
-            this.setState( this.props.blogPost );
+            this.setState(this.props.blogPost);
         }
     }
 
     render() {
-
-        // console.log("FormPostEditAdd props = ", this.props);
-        // console.log("FormPostEditAdd state = ", this.state);
-
 
         return (
             <div>
@@ -93,7 +89,7 @@ class PostFormEditAdd extends Component {
 }
 
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 
     return {
         handleSavePost: blogPost => dispatch(savePost(blogPost))
