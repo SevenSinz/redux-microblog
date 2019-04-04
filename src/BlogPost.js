@@ -38,7 +38,6 @@ class BlogPost extends Component {
         );
     }
 
-
     showBlogPost() {
         console.log("blogPost inside BLogpost showblogpost = ", this.props.blogPost)
         return (<div>
