@@ -26,7 +26,7 @@ class App extends Component {
 
   savePost(blogPost) {
     console.log("inside savePost in App, blogPost = ", blogPost.id)
-    this.setState({ blogPosts: { ...this.state.blogPosts, [blogPost.id]: blogPost }})
+    this.setState({ blogPosts: { ...this.state.blogPosts, [blogPost.id]: blogPost }});
     console.log("inside savePost in App, blogPosts = ", this.state)
   }
 

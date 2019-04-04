@@ -16,10 +16,10 @@ class CommentAddForm extends Component {
     }
 
     handleSubmit(evt) {
+        evt.preventDefault();
         //give comment a uuid
         let newComment = { ...this.state };
         newComment.id = uuid();
-
         // add the comment to the copy of blogPost
         let newBlogPost = { ...this.props.blogPost };
         console.log("newBlogPost = ", newBlogPost)
@@ -30,12 +30,11 @@ class CommentAddForm extends Component {
         this.setState( { 
                         id: "",
                         text: "" 
-                        })
+                        });
     }
 
     handleChange(evt) {
-        this.setState({ [evt.target.name]: evt.target.value })
-
+        this.setState({ [evt.target.name]: evt.target.value });
     }
 
     render() {

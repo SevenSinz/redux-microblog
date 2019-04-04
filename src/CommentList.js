@@ -22,11 +22,11 @@ class CommentList extends Component {
 
     return (objNotEmpty && this.props.blogPost.comments.length) ? (
       <div className="comments">
-        {this.props.blogPost.comments.map((cardData) => (
+        {this.props.blogPost.comments.map((postComment) => (
           <CommentCard
-            text={cardData.text}
-            id={cardData.id}
-            key={cardData.id}
+            text={postComment.text}
+            id={postComment.id}
+            key={postComment.id}
             handleDeleteComment={this.deleteComment}
           />
         ))}
