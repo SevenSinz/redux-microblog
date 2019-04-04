@@ -60,7 +60,7 @@ class App extends Component {
           <Route exact path="/:id"
             render={(rtProps) => <BlogPost
               {...rtProps}
-              blogPost={this.getBlogPost(rtProps)}
+              // blogPost={this.getBlogPost(rtProps)}
               handleDeletePost={this.deletePost}
               handleSavePost={this.savePost} />} />
 

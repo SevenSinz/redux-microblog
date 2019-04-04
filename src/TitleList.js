@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+
 import BlogCard from "./BlogCard";
 
 class TitleList extends Component {
@@ -30,4 +32,11 @@ class TitleList extends Component {
   }
 }
 
-export default TitleList;
+function mapStateToProps(state){
+  console.log("TitleList inside mapStateToProps state = ", state)
+
+  return { 
+    titleList: Object.values(state.blogPosts)
+  }
+}
+export default connect(mapStateToProps)(TitleList);

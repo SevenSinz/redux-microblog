@@ -1,20 +1,18 @@
-const INITIAL_STATE = { memes: [] };
+import { SAVE_POST, DELETE_POST } from './actionTypes'
+
+const INITIAL_STATE = { blogPosts: {} };
 
 function rootReducer(state = INITIAL_STATE, action) {
 
     switch (action.type) {
-        case "ADD": 
-            let addAMeme = [...state.memes, action.payload];
-            return { memes: addAMeme };
-        
-        case "DELETE":
-            let deleteAMeme = state.memes.filter(m => m.id !== action.payload.id);
-            return { memes: deleteAMeme };
 
-        case "UPDATE":
-            let stateMinusUpdated = state.memes.filter(m => m.id !== action.payload.id)
-            let updateMeme = [...stateMinusUpdated, action.payload];
-            return { memes: updateMeme };
+        case SAVE_POST:
+            return { ...state, blogPosts: { ...state.blogPosts, [action.payload.blogPost.id]: action.payload.blogPost } }
+
+        case DELETE_POST:
+            let newBlogPosts = { ...state.blogPosts }
+            delete newBlogPosts[action.payload.id];
+            return { ...state, blogPosts: newBlogPosts }
 
         default:
             return state;
@@ -22,3 +20,5 @@ function rootReducer(state = INITIAL_STATE, action) {
 }
 
 export default rootReducer;
+
+

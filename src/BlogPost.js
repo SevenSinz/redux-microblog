@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { savePost, deletePost } from './actions';
 
 import PostFormEditAdd from './PostFormEditAdd';
 import CommentAddForm from './CommentAddForm';
@@ -58,11 +60,28 @@ class BlogPost extends Component {
 
     render() {
         // console.log("blogPost in BlogPost?", this.props.blogPost);
-        // console.log("BlogPost state?", this.state);
+        console.log("BlogPost render", this.props);
         return (
             this.state.isEditing ? this.showEdit() : this.showBlogPost()
         );
     }
 }
 
-export default BlogPost;
+
+function mapStateToProps(state){
+    console.log("BlogPost inside mapStateToProps state = ", state)
+
+    return { 
+        
+    }
+}
+// function mapDispatchToProps(dispatch, props){
+//     let id = this.props.match.params.id;
+//     console.log("BlogPost inside mapDistaptchToProps id, props = ", id, props)
+//     return {
+//         handleDeletePost: id => dispatch(deletePost(id))
+//     }
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(BlogPost);
+export default connect(mapStateToProps)(BlogPost);
+// export default BlogPost;

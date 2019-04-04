@@ -8,7 +8,7 @@ class BlogHome extends Component {
                 <p className="bg-secondary rounded">
                     Welcome to Microblog, our innovative side for communicating information superhighway
                 </p>
-                <TitleList titleList={this.props.titleList} />
+                <TitleList />
             </div>
         );
     }

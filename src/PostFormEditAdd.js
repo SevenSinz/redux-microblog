@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { savePost } from './actions';
+
+
 import { Card, CardBody, CardTitle } from 'reactstrap';
 import { Link } from "react-router-dom";
 import uuid from 'uuid/v4';
@@ -37,8 +41,8 @@ class PostFormEditAdd extends Component {
 
     render() {
 
-        console.log("FormPostEditAdd props = ", this.props);
-        console.log("FormPostEditAdd state = ", this.state);
+        // console.log("FormPostEditAdd props = ", this.props);
+        // console.log("FormPostEditAdd state = ", this.state);
 
 
         return (
@@ -88,4 +92,11 @@ class PostFormEditAdd extends Component {
     }
 }
 
-export default PostFormEditAdd;
+
+function mapDispatchToProps(dispatch){
+
+    return {
+        handleSavePost: blogPost => dispatch(savePost(blogPost))
+    }
+}
+export default connect(null, mapDispatchToProps)(PostFormEditAdd);
