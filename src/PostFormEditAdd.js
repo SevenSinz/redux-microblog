@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import uuid from 'uuid/v4';
 
 class PostFormEditAdd extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +23,6 @@ class PostFormEditAdd extends Component {
 
     handleSubmit(evt) {
         evt.preventDefault();
-        console.log("FormPostEditAdd blogPost?", this.state);
         this.props.handleSavePost(this.state);
         this.props.history.push('/');
     }
@@ -40,7 +38,6 @@ class PostFormEditAdd extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -88,11 +85,10 @@ class PostFormEditAdd extends Component {
     }
 }
 
-
 function mapDispatchToProps(dispatch) {
-
     return {
         handleSavePost: blogPost => dispatch(savePost(blogPost))
     }
 }
+
 export default connect(null, mapDispatchToProps)(PostFormEditAdd);

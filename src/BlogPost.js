@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { savePost, deletePost } from './actions';
+import { savePost, deletePost, deleteComment } from './actions';
 
 import PostFormEditAdd from './PostFormEditAdd';
 import CommentAddForm from './CommentAddForm';
@@ -31,7 +31,6 @@ class BlogPost extends Component {
     }
 
     showEdit(blogPost) {
-        console.log("blogPost inside BLogpost showEdit = ", blogPost)
         return (<div>
             <PostFormEditAdd
                 history={this.props.history}
@@ -42,7 +41,6 @@ class BlogPost extends Component {
     }
 
     showBlogPost(blogPost) {
-        console.log("blogPost inside BLogpost showblogpost = ", blogPost)
         return (<div>
             <button onClick={this.toggleIsEditing}> Edit </button>
             <button onClick={this.handleDeletePost}> Delete </button>
@@ -52,7 +50,9 @@ class BlogPost extends Component {
                 <p> {blogPost.body} </p>
             </div>
             <CommentList blogPost={blogPost}
-                handleSavePost={this.props.handleSavePost} />
+                handleSavePost={this.props.handleSavePost}
+                handleDeleteComment={this.props.handleDeleteComment}
+            />
             <CommentAddForm blogPost={blogPost}
                 handleSavePost={this.props.handleSavePost} />
         </div>
@@ -74,7 +74,11 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, props) {
     let id = props.match.params.id;
-    return { handleDeletePost: () => dispatch(deletePost(id)) }
+    return {
+        handleDeletePost: () => dispatch(deletePost(id)),
+        handleSavePost: (blogPost) => dispatch(savePost(blogPost)),
+        handleDeleteComment: (blogPostId, commentId) => dispatch(deleteComment(blogPostId, commentId)),
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogPost);

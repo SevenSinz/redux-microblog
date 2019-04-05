@@ -7,10 +7,9 @@ class CommentAddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: "",
+            commentId: "",
             text: ""
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -19,16 +18,16 @@ class CommentAddForm extends Component {
         evt.preventDefault();
         //give comment a uuid
         let newComment = { ...this.state };
-        newComment.id = uuid();
+        newComment.commentId = uuid();
+
         // add the comment to the copy of blogPost
         let newBlogPost = { ...this.props.blogPost };
-        console.log("newBlogPost = ", newBlogPost)
         newBlogPost.comments.push(newComment);
 
         // send copy of blogPost save
         this.props.handleSavePost(newBlogPost);
         this.setState( { 
-                        id: "",
+                        commentId: "",
                         text: "" 
                         });
     }
@@ -49,7 +48,7 @@ class CommentAddForm extends Component {
 
                                 <div>
                                     <label htmlFor="text" > Comment: </label>
-                                    <input id="text"
+                                    <input commentId="text"
                                         name="text"
                                         placeholder="New Comment"
                                         value={this.state.text}

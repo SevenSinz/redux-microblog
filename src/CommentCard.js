@@ -7,7 +7,7 @@ class CommentCard extends Component {
     }
 
 handleDeleteComment(){
-    this.props.handleDeleteComment(this.props.id)
+    this.props.handleDeleteComment(this.props.blogPostId, this.props.commentId)
 }
 
     render() {

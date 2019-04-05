@@ -33,8 +33,6 @@ class TitleList extends Component {
 }
 
 function mapStateToProps(state){
-  console.log("TitleList inside mapStateToProps state = ", state)
-
   return { 
     titleList: Object.values(state.blogPosts)
   }
