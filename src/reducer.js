@@ -1,13 +1,24 @@
-import { LOAD_POSTS, SAVE_POST, DELETE_POST, DELETE_COMMENT } from './actions/actionTypes'
+import { LOAD_POSTS, LOAD_A_POST, SAVE_POST, DELETE_POST, DELETE_COMMENT } from './actions/actionTypes'
 
+// const INITIAL_STATE = { loading: false, blogPosts: {} };
 const INITIAL_STATE = { blogPosts: {} };
 
 function reducer(state = INITIAL_STATE, action) {
 
     switch (action.type) {
 
+        // case START_LOADING:
+        //     return {...state, loading: true};
+
+        // case STOP_LOADING:
+        //     return {...state, loading: false};
+
         case LOAD_POSTS: {
            return { ...state, blogPosts: action.payload.blogPosts }
+        }
+
+        case LOAD_A_POST: {
+            return { ...state, blogPosts: { ...state.blogPosts, [action.payload.blogPost.id]: action.payload.blogPost } }
         }
 
         case SAVE_POST: {
