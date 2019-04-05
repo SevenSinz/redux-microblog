@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { savePost } from './actions';
+import { savePost } from '../actions/actionCreators';
 
 
 import { Card, CardBody, CardTitle } from 'reactstrap';

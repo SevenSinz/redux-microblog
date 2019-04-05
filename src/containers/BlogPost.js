@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { savePost, deletePost, deleteComment } from './actions';
+import { savePost, deletePost, deleteComment } from '../actions/actionCreators';
 
 import PostFormEditAdd from './PostFormEditAdd';
-import CommentAddForm from './CommentAddForm';
-import CommentList from './CommentList';
+import CommentAddForm from '../components/CommentAddForm';
+import CommentList from '../components/CommentList';
 
 class BlogPost extends Component {
     constructor(props) {

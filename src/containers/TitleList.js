@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
-import BlogCard from "./BlogCard";
+import BlogCard from "../components/BlogCard";
 
 class TitleList extends Component {
     static defaultProps = { titleList: [] };

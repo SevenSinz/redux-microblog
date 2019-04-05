@@ -1,4 +1,4 @@
-import { SAVE_POST, DELETE_POST, DELETE_COMMENT } from './actionTypes'
+import { SAVE_POST, DELETE_POST, DELETE_COMMENT } from './actions/actionTypes'
 
 const INITIAL_STATE = { blogPosts: {} };
 

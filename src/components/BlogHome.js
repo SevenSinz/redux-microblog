@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TitleList from './TitleList';
+import TitleList from '../containers/TitleList';
 
 class BlogHome extends Component {
     render() {

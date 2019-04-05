@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Switch, Redirect, Route } from "react-router-dom";
 
 import BlogHome from './BlogHome';
-import PostFormEditAdd from './PostFormEditAdd';
-import BlogPost from './BlogPost';
+import PostFormEditAdd from '../containers/PostFormEditAdd';
+import BlogPost from '../containers/BlogPost';
 import Navbar from "./Navbar";
 import './App.css';
 
