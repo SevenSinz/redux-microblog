@@ -59,6 +59,11 @@ class BlogPost extends Component {
         );
     }
 
+    // componentDidMount(){
+    //     console.log("we are in componentDidMount!")
+    //     this.props.getPostsFromAPI();
+    // }
+
     render() {
         return (
             this.state.isEditing ? this.showEdit(this.props.blogPost) : this.showBlogPost(this.props.blogPost)
@@ -75,6 +80,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, props) {
     let id = props.match.params.id;
     return {
+        // getPostsFromAPI,
         handleDeletePost: () => dispatch(deletePost(id)),
         handleSavePost: (blogPost) => dispatch(savePost(blogPost)),
         handleDeleteComment: (blogPostId, commentId) => dispatch(deleteComment(blogPostId, commentId)),

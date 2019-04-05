@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TitleList from '../containers/TitleList';
+import AllBlogPosts from '../containers/AllBlogPosts';
 
 class BlogHome extends Component {
     render() {
@@ -8,7 +8,7 @@ class BlogHome extends Component {
                 <p className="bg-secondary rounded">
                     Welcome to Microblog, our innovative side for communicating information superhighway
                 </p>
-                <TitleList />
+                <AllBlogPosts />
             </div>
         );
     }

@@ -1,10 +1,14 @@
-import { SAVE_POST, DELETE_POST, DELETE_COMMENT } from './actions/actionTypes'
+import { LOAD_POSTS, SAVE_POST, DELETE_POST, DELETE_COMMENT } from './actions/actionTypes'
 
 const INITIAL_STATE = { blogPosts: {} };
 
-function rootReducer(state = INITIAL_STATE, action) {
+function reducer(state = INITIAL_STATE, action) {
 
     switch (action.type) {
+
+        case LOAD_POSTS: {
+           return { ...state, blogPosts: action.payload.blogPosts }
+        }
 
         case SAVE_POST: {
             return { ...state, blogPosts: { ...state.blogPosts, [action.payload.blogPost.id]: action.payload.blogPost } }
@@ -28,4 +32,4 @@ function rootReducer(state = INITIAL_STATE, action) {
     }
 }
 
-export default rootReducer;
+export default reducer;
