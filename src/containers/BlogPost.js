@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAPostFromAPI, savePost, deletePost, deleteComment } from '../actions/actionCreators';
+import { getAPostFromAPI, savePost, deletePost, deleteComment, showErr, hideErr } from '../actions/actionCreators';
 
 import PostFormEditAdd from './PostFormEditAdd';
 import CommentAddForm from '../components/CommentAddForm';
 import CommentList from '../components/CommentList';
+import Error from "../components/Error";
+
 
 class BlogPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isEditing: false,
-            // isLoading: true,
         }
         this.toggleIsEditing = this.toggleIsEditing.bind(this);
         this.handleDeletePost = this.handleDeletePost.bind(this);
@@ -31,11 +32,9 @@ class BlogPost extends Component {
         this.props.history.push('/');
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
         console.log("we are in componentDidMount!")
         this.props.getAPostFromAPI(this.props.match.params.id);
-        // this.setState((st) => ({ ...st, isLoading: false }));
-        // console.log("Did we get to th nd");
     }
 
     showEdit(blogPost) {
@@ -70,29 +69,54 @@ class BlogPost extends Component {
 
 
     render() {
-        return (
-            !this.props.blogPost ? <h1> Page Loading... </h1> : 
-            ( this.state.isEditing ? this.showEdit(this.props.blogPost) : this.showBlogPost(this.props.blogPost) )
-        );
+        if (this.props.errorMessage) {
+            return <Error history={ this.props.history }/>
+        } else if (this.props.loading) {
+            return <h1> Page Loading... </h1>
+        } else if (this.state.isEditing) {
+            return this.showEdit(this.props.blogPost)
+        } else {
+            return this.showBlogPost(this.props.blogPost)
+        }
+
+        // return (
+
+        //     this.props.errorMessage ? <Error /> :
+        //     this.props.loading ?  <h1> Page Loading... </h1> : 
+        //     this.state.isEditing ? this.showEdit(this.props.blogPost) : 
+        //     this.showBlogPost(this.props.blogPost)
+        // );
     }
 }
 
 function mapStateToProps(state, ownProps) {
-    const post =  state.blogPosts[ownProps.match.params.id]
+    const post = state.blogPosts[ownProps.match.params.id]
     console.log("BlogPost msp", post)
     return {
-        blogPost: post 
+        blogPost: post,
+        loading: state.loading,
+        errorMessage: state.errorMessage
     }
 }
 
-function mapDispatchToProps(dispatch, props) {
-    let id = props.match.params.id;
-    return {
-        getAPostFromAPI,
-        handleDeletePost: () => dispatch(deletePost(id)),
-        handleSavePost: (blogPost) => dispatch(savePost(blogPost)),
-        handleDeleteComment: (blogPostId, commentId) => dispatch(deleteComment(blogPostId, commentId)),
-    }
+const mapDispatchToProps = {
+    showErr,
+    hideErr,
+    getAPostFromAPI,
+    handledeletePost: deletePost,
+    handleSavePost: savePost,
+    handleDeleteComment: deleteComment,
 }
+
+
+// function mapDispatchToProps(dispatch, props) {
+//     let id = props.match.params.id;
+//     return {
+//         getAPostFromAPI,
+//         handleDeletePost: () => dispatch(deletePost(id)),
+//         handleSavePost: (blogPost) => dispatch(savePost(blogPost)),
+//         handleDeleteComment: (blogPostId, commentId) => dispatch(deleteComment(blogPostId, commentId)),
+//     }
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogPost);

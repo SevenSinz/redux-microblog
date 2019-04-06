@@ -1,17 +1,17 @@
-import { LOAD_POSTS, LOAD_A_POST, SAVE_POST, DELETE_POST, DELETE_COMMENT } from './actions/actionTypes'
+import { LOAD_POSTS, LOAD_A_POST, SAVE_POST, DELETE_POST, DELETE_COMMENT, START_LOADING, STOP_LOADING, SHOW_ERR, HIDE_ERR } from './actions/actionTypes'
 
 // const INITIAL_STATE = { loading: false, blogPosts: {} };
-const INITIAL_STATE = { blogPosts: {} };
+const INITIAL_STATE = { blogPosts: {}, loading: true, errorMessage: '' };
 
 function reducer(state = INITIAL_STATE, action) {
 
     switch (action.type) {
 
-        // case START_LOADING:
-        //     return {...state, loading: true};
+        case START_LOADING:
+            return {...state, loading: true};
 
-        // case STOP_LOADING:
-        //     return {...state, loading: false};
+        case STOP_LOADING:
+            return {...state, loading: false};
 
         case LOAD_POSTS: {
            return { ...state, blogPosts: action.payload.blogPosts }
@@ -36,6 +36,14 @@ function reducer(state = INITIAL_STATE, action) {
             let newBlogPosts = { ...state.blogPosts }
             let newBlogPost = { ...newBlogPosts[action.payload.blogPostId], comments: newComments };
             return { ...state, blogPosts: { ...state.blogPosts, [newBlogPost.id]: newBlogPost } }
+        }
+
+        case SHOW_ERR: {
+            return { ...state, errorMessage: action.payload.errorMessage }
+        }
+        
+        case HIDE_ERR: {
+            return { ...state, errorMessage: '' }
         }
 
         default:

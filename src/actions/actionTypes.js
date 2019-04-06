@@ -3,3 +3,7 @@ export const DELETE_POST = "DELETE_POST";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const LOAD_POSTS = "LOAD_POSTS";
 export const LOAD_A_POST = "LOAD_A_POST";
+export const START_LOADING = "START_LOADING";
+export const STOP_LOADING = "STOP_LOADING";
+export const SHOW_ERR = "SHOW_ERR";
+export const HIDE_ERR = "HIDE_ERR";
